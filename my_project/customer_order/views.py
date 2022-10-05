@@ -90,7 +90,7 @@ class CustomerOrderDetailApiView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    #  Delete customer given by the ID
+    #  Delete customer order given by the ID
     def delete(self, request, id, *args, **kwargs):
         '''
         Deletes the customer order item with given id if exists
