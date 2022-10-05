@@ -48,7 +48,7 @@ class CustomerDetailApiView(APIView):
         Helper method to get the customer object with given id
         '''
         try:
-            return Customer.objects.get(id=customer_id)
+            return Customer.objects.get(customer_id=customer_id)
         except Customer.DoesNotExist:
             return None
 
