@@ -9,7 +9,7 @@ from .serializers import CustomerSerializer
 
 class CustomerApiView(APIView):
 
-    #permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     # get all customers
     def get(self, request, *args, **kwargs):
@@ -41,7 +41,7 @@ class CustomerApiView(APIView):
 
 class CustomerDetailApiView(APIView):
 
-    #permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, customer_id):
         '''

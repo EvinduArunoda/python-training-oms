@@ -88,14 +88,12 @@ DATABASES = {
     }
 }
 
-'''
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'REST_framework.authentication.SessionAuthentication',
         'firebase_auth.authentication.FirebaseAuthentication',
     ]
 }
-'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
