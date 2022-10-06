@@ -48,7 +48,7 @@ class CustomerOrderDetailApiView(APIView):
         '''
         try:
             return CustomerOrder.objects.get(customer_order_id=customer_order_id)
-        except Customer.DoesNotExist:
+        except CustomerOrder.DoesNotExist:
             return None
 
 
