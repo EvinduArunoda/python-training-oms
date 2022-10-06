@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer',
     'customer_order',
-    'rest_framework',
-    'firebase_auth',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -93,7 +92,7 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
-        'firebase_auth.authentication.FirebaseAuthentication',
+        'my_project.authentication.FirebaseAuthentication',
     ]
 }
 
