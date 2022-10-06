@@ -6,12 +6,12 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from firebase_admin import auth
 from firebase_admin import credentials
-from REST_framework import authentication
-from REST_framework import exceptions
+from rest_framework import authentication
+from rest_framework import exceptions
 
 from .exceptions import FirebaseError
-from .exceptions import InvalidAuthToken
 from .exceptions import NoAuthToken
+from .exceptions import InvalidAuthToken
 
 cred = credentials.Certificate(
     {
@@ -54,6 +54,6 @@ class FirebaseAuthentication(authentication.BaseAuthentication):
             raise FirebaseError()
 
         user, created = User.objects.get_or_create(username=uid)
-        user.profile.last_activity = timezone.localtime()
+        #user.profile.last_activity = timezone.localtime()
 
         return (user, None)
