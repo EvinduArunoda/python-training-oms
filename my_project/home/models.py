@@ -3,6 +3,7 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
+from customer.models import Customer
 
 class HomePage(Page):
     body = RichTextField(blank=True)
@@ -10,3 +11,12 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('body'),
     ]
+
+    def get_context(self, request):
+
+        customers = Customer.objects.all()
+
+        # Update template context
+        context = super().get_context(request)
+        context['customers'] = customers
+        return context

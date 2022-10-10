@@ -7,3 +7,7 @@ class Customer(models.Model):
     date_of_birth = models.DateField()
     currency_balance = models.FloatField()
     page_visitis = models.IntegerField()
+
+    def __str__(self) -> str:
+        """Str repr of this object."""
+        return self.first_name
