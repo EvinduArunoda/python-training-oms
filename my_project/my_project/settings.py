@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'customer_order',
     'home',
     'rest_framework',
-
+    
+    "wagtail.contrib.modeladmin",
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
