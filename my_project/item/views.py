@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import render
 
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
 from .models import Item
+from category.models import Category
 from .serializers import ItemSerializer
 
 class ItemApiView(APIView):
@@ -18,10 +20,20 @@ class ItemApiView(APIView):
     # get all items
     def get(self, request, *args, **kwargs):
         '''
-        List all items
+        List all/filtered items
         '''
-        customers = Item.objects.all()
-        serializer = ItemSerializer(customers, many=True)
+        name = request.GET.get('category')
+        if name != '' and name != None:
+            try:
+                category = Category.objects.get(name=name)
+                items = Item.objects.filter(category=category.category_id)
+            except Category.DoesNotExist:
+                category = None
+                items = []
+        else:
+            items = Item.objects.all()
+            
+        serializer = ItemSerializer(items, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     # add new item
@@ -147,3 +159,19 @@ class ItemToggleVisibilityApiView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ItemFilteredByCategoryApiView(APIView):
+
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    # get all items
+    def get(self, request, *args, **kwargs):
+        name = request.GET.get('category')
+        '''
+        List all items
+        '''
+        # print(category)
+        customers = Item.objects.all()
+        serializer = ItemSerializer(customers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
