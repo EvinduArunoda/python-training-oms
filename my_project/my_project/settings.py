@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'customer_order',
     'home',
     'advertisement',
+    'item',
     'rest_framework',
     
     "wagtail.contrib.modeladmin",
