@@ -89,19 +89,13 @@
     <br/>
     <br/>
     <div class="row">
-        <div class="column">
-            <div class="card">
-                <h3>Card 1</h3>
-                <p>Some text</p>
-                <p>Some text</p>
+        {% for ad in advertisements %}
+            <div class="column">
+                <div class="card" style="background-color: red;">
+                    <h3>{{ ad.title }}</h3>
+                    <p>{{ ad.description }}</p>
+                </div>
             </div>
-        </div>
-        <div class="column">
-            <div class="card">
-                <h3>Card 2</h3>
-                <p>Some text</p>
-                <p>Some text</p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}

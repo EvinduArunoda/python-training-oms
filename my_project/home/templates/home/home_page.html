@@ -56,6 +56,7 @@
           <th>DoB</th>
           <th>Currency Balance</th>
           <th>Page visitis</th>
+          <th>Actions</th>
         </tr>
         {% for customer in customers %}
             <tr>
@@ -64,6 +65,7 @@
                 <td>{{ customer.date_of_birth }}</td>
                 <td>{{ customer.currency_balance }}</td>
                 <td>{{ customer.page_visitis }}</td>
+                <td><button type="submit" value=""> View more</button></td>
             </tr>
         {% endfor %}
       </table>
