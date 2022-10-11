@@ -1,9 +1,8 @@
 from unicodedata import category
 from django.shortcuts import render
 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,7 +11,9 @@ from .models import Item
 from category.models import Category
 from .serializers import ItemSerializer
 
-class ItemApiView(APIView):
+from rest_framework.pagination import LimitOffsetPagination
+
+class ItemApiView(APIView, LimitOffsetPagination):
 
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
@@ -33,8 +34,11 @@ class ItemApiView(APIView):
         else:
             items = Item.objects.all()
             
-        serializer = ItemSerializer(items, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        # serializer = ItemSerializer(items, many=True)
+        # return Response(serializer.data, status=status.HTTP_200_OK)
+        results = self.paginate_queryset(items, request, view=self)
+        serializer = ItemSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
 
     # add new item
     def post(self, request, *args, **kwargs):
