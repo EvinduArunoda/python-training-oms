@@ -3,6 +3,8 @@ from wagtail.contrib.modeladmin.options import (
         ModelAdmin, modeladmin_register)
 
 from .models import Item
+from wagtail.admin.panels import FieldPanel
+
 
 class ItemAdmin(ModelAdmin):
     model = Item
@@ -16,6 +18,7 @@ class ItemAdmin(ModelAdmin):
     list_display = ('name', 'description', 'visible', 'price', 'category')
     list_filter = ("name", "visible", "category")
     search_fields = ("name",)
+    inspect_view_enabled = True
 
 admin.site.register(Item)
 modeladmin_register(ItemAdmin)
