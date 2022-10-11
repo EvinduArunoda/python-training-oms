@@ -1,13 +1,16 @@
-
-
 {% load wagtailcore_tags %}
 
 {% block body_class %}{{ page.title }}{% endblock %}
 
 {% block content %}
     {{ page.body|richtext }}
-    <table>
-        <tr>
+    <form type="submit" action="{% pageurl page %}">{% csrf_token %}
+        <input type="text" name="name" placeholder="Search by" maxlength="255" id="name" />
+    </form>
+    <br/>
+    <br/>
+    <table width="1200" style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
           <th>First Name</th>
           <th>Last Name</th>
           <th>DoB</th>

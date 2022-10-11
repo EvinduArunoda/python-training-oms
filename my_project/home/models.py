@@ -1,4 +1,6 @@
-from django.db import models
+from http.client import HTTPResponse
+from pickle import TRUE
+from django.db.models  import Q
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField
@@ -12,9 +14,13 @@ class HomePage(Page):
         FieldPanel('body'),
     ]
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
+        name = request.GET.get('name')
 
-        customers = Customer.objects.all()
+        if name == '' or name == None or name==' ':
+            customers = Customer.objects.all()
+        else:
+            customers = Customer.objects.filter(Q(**{f'{"first_name"}__icontains':name}) | Q(**{f'{"last_name"}__icontains':name}))
 
         # Update template context
         context = super().get_context(request)
