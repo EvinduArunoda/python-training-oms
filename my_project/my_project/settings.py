@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home',
     'advertisement',
     'item',
+    'order',
     'category',
     'rest_framework',
     
