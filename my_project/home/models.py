@@ -1,4 +1,3 @@
-from http.client import HTTPResponse
 from pickle import TRUE
 from django.db.models  import Q
 
@@ -16,7 +15,6 @@ class HomePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         name = request.GET.get('name')
-
         if name == '' or name == None or name==' ':
             customers = Customer.objects.all()
         else:
