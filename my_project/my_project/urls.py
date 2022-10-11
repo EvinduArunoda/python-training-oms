@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from customer import urls as customer_urls
 from customer_order import urls as orders_urls
+from item import urls as item_urls
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
@@ -30,6 +31,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('customers/', include(customer_urls)),
     path('orders/', include(orders_urls)),
+    path('items/', include(item_urls)),
     path('cms/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('pages/', include(wagtail_urls)),
